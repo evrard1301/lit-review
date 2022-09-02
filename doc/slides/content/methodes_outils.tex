@@ -1,0 +1,28 @@
+\section{Méthodes et Outils}
+
+\begin{frame}{Architecture}
+  \begin{block}{Découpage en applications}
+    {\color{darkred}\textit{authentication}}, 
+    {\color{darkblue}\textit{publication}}, 
+    {\color{darkgreen}\textit{home}}
+  \end{block}
+  
+  \begin{block}{Définition des principales urls}
+    \tiny
+    \begin{itemize}
+    \item {\color{darkred} \url{login/}}
+    \item {\color{darkred} \url{logout/}}
+    \item {\color{darkred} \url{signup/}}
+    \item {\color{darkblue} \url{create-ticket/}}
+    \item {\color{darkblue} \url{edit-ticket/<int:ticket_id>}}
+    \item {\color{darkblue} \url{create-review/}}
+    \item {\color{darkblue} \url{create-review/<int:ticket_id>/}}
+    \item {\color{darkblue} \url{edit-review/<int:review_id>}}
+
+    \item {\color{darkgreen} \url{users/<int:id>}}
+    \item {\color{darkgreen} \url{news-feed/}}
+    \item {\color{darkgreen} \url{social/}}
+    \item {\color{darkgreen} \url{history/}}
+    \end{itemize}
+  \end{block}
+\end{frame}
