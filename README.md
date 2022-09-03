@@ -1,4 +1,3 @@
-![doc/slides/img/logo.png]()
 # LITReview
 LITReview is a web app where users can share and ask for reviews of books and articles.
 
