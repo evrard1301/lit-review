@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    flex-direction: column;
+    
+    max-width: 40%;
+
+    label {
+	font-size: 1.2em;
+    }
+    
+    input {
+	margin: 1em 0 1em 0;
+	
+    }
+}
