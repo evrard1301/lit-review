@@ -1,7 +1,11 @@
 asgiref==3.5.2
 Django==4.1
+django-appconf==1.0.5
+django-compressor==4.1
+django-sass-processor==1.2.1
 flake8==5.0.4
 jedi==0.18.1
+libsass==0.21.0
 mccabe==0.7.0
 parso==0.8.3
 pluggy==1.0.0
@@ -9,5 +13,8 @@ pycodestyle==2.9.1
 pyflakes==2.5.0
 python-lsp-jsonrpc==1.0.0
 python-lsp-server==1.5.0
+rcssmin==1.1.0
+rjsmin==1.2.0
+six==1.16.0
 sqlparse==0.4.2
 ujson==5.4.0

@@ -6,6 +6,9 @@
 env
 __pycache__
 
+# Django Stuff
+litreview/static
+
 # LaTeX Stuff
 *.aux
 *.log

@@ -1,0 +1,14 @@
+{% load sass_tags %}
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet", href="{% sass_src 'styles/main.scss' %}"/>
+    <title>LITReview</title>
+  </head>
+  <body>
+    {% block body %}
+    {% endblock %}
+  </body>
+</html>
