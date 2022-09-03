@@ -1,3 +1,11 @@
+# Temp Stuff
+*~*
+*\#*
+
+# Python Stuff
+env
+__pycache__
+
 # LaTeX Stuff
 *.aux
 *.log
