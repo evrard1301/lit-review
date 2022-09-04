@@ -1,5 +1,8 @@
 @import 'base/reset';
 @import 'base/typo';
 @import 'abstracts/for_mobile';
+@import 'themes/colors';
 @import 'pages/signup';
 @import 'layout/forms';
+@import 'components/errors_panel';
+

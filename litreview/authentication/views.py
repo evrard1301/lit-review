@@ -15,11 +15,16 @@ class SignupPage(View):
 
     def post(self, request):
         form = forms.UserForm(request.POST)
+        errors = []
 
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            if form.cleaned_data['password'] == form.cleaned_data['confirm']:
+                form.save()
+                return redirect('login')
+            else:
+                errors.append('Les mots de passe sont différents')
 
         return render(request, 'authentication/signup.html', {
-            'form': form
+            'form': form,
+            'errors': errors
         })

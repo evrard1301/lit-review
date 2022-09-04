@@ -1,15 +1,28 @@
 form {
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;    
     max-width: 40%;
-
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px grey;
+    padding: 1em;
+    margin: 1em;
+    
     label {
 	font-size: 1.2em;
+	font-weight: bold;
     }
     
     input {
-	margin: 1em 0 1em 0;
-	
+	margin: 1em 0 2em 0;
+    }
+
+    input[type="submit"] {
+	padding: 1em;	
+    }
+    
+    input[type="text"], [type="password"], [type="email"] {
+	border: 2px solid $primary-dark-color;
+	border-radius: 5px;
+	padding: 0.2em;
     }
 }

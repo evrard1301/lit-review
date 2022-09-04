@@ -8,11 +8,14 @@ class UserForm(forms.ModelForm):
         fields = [
             'username',
             'password',
-            'first_name',
-            'last_name',
-            'email'
         ]
 
         widgets = {
             'password': forms.PasswordInput
         }
+
+    confirm = forms.CharField(max_length=256,
+                              required=True,
+                              widget=forms.PasswordInput,
+                              label="Confirmer le mot de passe")
+
