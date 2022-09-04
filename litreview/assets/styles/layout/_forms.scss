@@ -27,10 +27,17 @@ form {
     input[type="submit"] {
 	padding: 1em;
 	font-size: 1.2em;
+	background-color: rgb(220, 220, 255);
+	border: 2px solid $primary-color;
+	border-radius: 5px;
+
+	&:hover {
+	    background-color: rgb(200, 200, 255);
+	}
     }
     
     input[type="text"], [type="password"], [type="email"] {
-	border: 2px solid $primary-dark-color;
+	border: 1px solid $primary-dark-color;
 	border-radius: 5px;
 	padding: 0.5em;
     }

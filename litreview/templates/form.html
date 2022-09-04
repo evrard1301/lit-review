@@ -1,0 +1,28 @@
+{% load static %}
+
+{% if form.errors %}
+  <div class="error-panel">
+    {% for field, error in form.errors.items %}
+      <div class="error-panel__header">
+      </div>
+      <div class="error-panel__body">
+	<div class="error-panel__body__error">
+	  <img class="error-panel__body__error__logo"
+	       alt="",
+	       src="{% static 'img/alert.png' %}"/>
+	       {{error}}
+	</div>
+      </div>      
+    {% endfor %}
+  </div>
+{% endif %}
+
+<table>
+  {% for field in form %}
+    <tr>
+      <td>{{field.label}}</td>
+      <td>{{field}}</td>
+    </tr>
+  {% endfor %}
+  <table>
+    
