@@ -1,3 +1,7 @@
+errorlist {
+    color: red;
+}
+
 form {
     display: flex;
     flex-direction: column;    
@@ -6,7 +10,11 @@ form {
     box-shadow: 2px 2px 2px grey;
     padding: 1em;
     margin: 1em;
+
     
+    margin-top: 2em;
+    max-width: 30%;
+	
     label {
 	font-size: 1.2em;
 	font-weight: bold;
@@ -17,12 +25,13 @@ form {
     }
 
     input[type="submit"] {
-	padding: 1em;	
+	padding: 1em;
+	font-size: 1.2em;
     }
     
     input[type="text"], [type="password"], [type="email"] {
 	border: 2px solid $primary-dark-color;
 	border-radius: 5px;
-	padding: 0.2em;
+	padding: 0.5em;
     }
 }

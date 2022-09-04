@@ -1,21 +1,12 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . import models
 
 
-class UserForm(forms.ModelForm):
-    class Meta:
+class UserForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = models.User
-        fields = [
-            'username',
-            'password',
-        ]
 
-        widgets = {
-            'password': forms.PasswordInput
-        }
 
-    confirm = forms.CharField(max_length=256,
-                              required=True,
-                              widget=forms.PasswordInput,
-                              label="Confirmer le mot de passe")
-
+class LoginForm(AuthenticationForm):
+    pass

@@ -1,30 +1,16 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.urls import reverse_lazy
+from django.views import generic
+from django.contrib.auth.views import LoginView
 from . import forms
 
 
-def login(request):
-    return render(request, 'authentication/login.html', {})
+class SignupPage(generic.CreateView):
+    form_class = forms.UserForm
+    success_url = reverse_lazy('login')
+    template_name = 'authentication/signup.html'
 
 
-class SignupPage(View):
-    def get(self, request):
-        return render(request, 'authentication/signup.html', {
-            'form': forms.UserForm
-        })
-
-    def post(self, request):
-        form = forms.UserForm(request.POST)
-        errors = []
-
-        if form.is_valid():
-            if form.cleaned_data['password'] == form.cleaned_data['confirm']:
-                form.save()
-                return redirect('login')
-            else:
-                errors.append('Les mots de passe sont différents')
-
-        return render(request, 'authentication/signup.html', {
-            'form': form,
-            'errors': errors
-        })
+class LoginPage(LoginView):
+    form_class = forms.LoginForm
+    template_name = 'authentication/login.html'
+    next_page = reverse_lazy('signup')
