@@ -1,0 +1,9 @@
+<div class="nav">
+  <ul>
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'logout' %}">déconnexion</a></li>
+    {% else %}}
+      <li><a href="{% url 'login' %}">connexion</a></li>
+    {% endif %}
+  </ul>
+</div>

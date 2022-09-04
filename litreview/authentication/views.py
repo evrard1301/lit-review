@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from . import forms
 
 
@@ -14,3 +14,8 @@ class LoginPage(LoginView):
     form_class = forms.LoginForm
     template_name = 'authentication/login.html'
     next_page = reverse_lazy('signup')
+
+
+class LogoutPage(LogoutView):
+    next_page = reverse_lazy('login')
+

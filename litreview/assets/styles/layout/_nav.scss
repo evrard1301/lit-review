@@ -1,0 +1,50 @@
+.nav {
+    $nav-height: 3em;
+    
+    display: inline-block;
+    width: 100%;
+    height: $nav-height;
+    background-color: rgb(50, 50, 150);
+    
+    ul {
+	display: flex;
+	justify-content: end;
+	list-style: none;
+	height: 100%;
+
+	@include for-mobile {
+	    flex-direction: column;
+	}
+
+	li {
+	    display: inline-block;
+	    height: 100%;
+
+	    @include for-mobile {
+		width: 100%;
+	    }
+	}
+	
+	li a {
+	    display: inline-block;
+	    line-height: $nav-height;
+	    font-family: calibri;
+	    font-size: 1.2em;
+	    height: 100%;
+	    padding: 0 1em 0 1em;
+	    text-decoration: none;
+	    color: white;
+	    
+	    @include for-mobile {
+		width: 100%;
+		padding: 0;
+		text-align: center;
+	    }
+
+	    &:hover {
+		background-color: black;
+	    }
+	}
+    }
+
+}
