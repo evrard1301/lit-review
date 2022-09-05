@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import (
+    render,
+    redirect,
+    get_object_or_404
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from . import forms
 from . import models
+from authentication.models import User
 
 
 class TicketPage(LoginRequiredMixin, View):
@@ -48,5 +53,36 @@ class EditTicketPage(LoginRequiredMixin, View):
             return redirect('login')
 
         return render(request, 'publication/edit_ticket.html', {
+            'form': form
+        })
+
+
+class CreateTicketReview(LoginRequiredMixin, View):
+    def get(self, request, id):
+        ticket = get_object_or_404(models.Ticket, id=id)
+        author = User.objects.get(id=ticket.user_id)
+        form = forms.ReviewForm()
+
+        return render(request, 'publication/ticket_review.html', {
+            'ticket': ticket,
+            'author': author,
+            'form': form
+        })
+
+    def post(self, request, id):
+        ticket = get_object_or_404(models.Ticket, id=id)
+        author = User.objects.get(id=ticket.user_id)
+        form = forms.ReviewForm(request.POST)
+
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.ticket = ticket
+            review.user = request.user
+            review.save()
+            return redirect('login')
+
+        return render(request, 'publication/ticket_review.html', {
+            'ticket': ticket,
+            'author': author,
             'form': form
         })

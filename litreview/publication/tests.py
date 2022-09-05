@@ -21,10 +21,12 @@ class CreateTicketTest(TestCase):
 
 class EditTicketTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='alice', password='azerty')
-        self.ticket = models.Ticket.objects.create(title='my ticket',
-                                                   description='this is my ticket',
-                                                   user_id=self.user.id)
+        self.user = User.objects.create_user(username='alice',
+                                             password='azerty')
+        self.ticket = \
+            models.Ticket.objects.create(title='my ticket',
+                                         description='this is my ticket',
+                                         user_id=self.user.id)
         self.ticket.save()
 
         self.client = Client()
@@ -67,3 +69,35 @@ class EditTicketTest(TestCase):
 
         ticket = models.Ticket.objects.get(id=self.ticket.id)
         self.assertEquals('my ticket', ticket.title)
+
+
+class CreateTicketReviewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='alice',
+                                             password='azerty')
+        self.ticket = \
+            models.Ticket.objects.create(title='my ticket',
+                                         description='this is my ticket',
+                                         user_id=self.user.id)
+        self.ticket.save()
+
+        self.client = Client()
+        self.client.login(username=self.user.username, password='azerty')
+
+    def test_ok_create_ticket(self):
+        self.assertEquals(0, models.Review.objects.count())
+
+        self.client.post(reverse('ticket_review',
+                                 kwargs={'id': self.ticket.id}), {
+                                     'headline': 'my headline',
+                                     'body': 'the body',
+                                     'rating': 4
+                                 })
+
+        self.assertEquals(1, models.Review.objects.count())
+        review = models.Review.objects.all()[0]
+        self.assertEquals('my headline', review.headline)
+        self.assertEquals('the body', review.body)
+        self.assertEquals(4, review.rating)
+        self.assertEquals(self.ticket.id, review.ticket.id)
+        self.assertEquals(self.user.id, review.user.id)

@@ -10,3 +10,8 @@ class CreateTicketForm(forms.ModelForm):
             'title': 'Titre'
         }
 
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = models.Review
+        fields = ['headline', 'body', 'rating']

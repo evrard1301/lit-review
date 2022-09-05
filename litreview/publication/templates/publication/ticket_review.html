@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <div class="ticket_review_page">
+    <h1>Publier une critique</h1>
+
+    <div class="ticket_review">
+      <div class="ticket_review__ticket">
+	{% if ticket.image %}
+	  <img
+	    class="ticket_review__ticket__img"
+	    alt=""
+	    src="{% static ticket.image.url %}"/>
+	  {% endif %}	
+
+	<h2>{{ticket.title}}</h2>
+	<h3>
+	  <em>par {{author.username}}</em>
+	  ({{ticket.time_created.date}})
+	</h3>
+	<br/>
+	<p>{{ticket.description}}</p>
+      </div>
+
+      <div class="ticket_review__review">
+	<h2>Ma critique</h2>
+	<form method="post">
+	  {% csrf_token %}
+	  {% include 'form.html' with form=form %}
+	  <input type="submit" value="Publier"/>
+	</form>
+      </div>
+    </div>
+    
+  </div>
+  
+{% endblock %}
