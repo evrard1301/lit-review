@@ -11,7 +11,7 @@ form {
     box-shadow: 2px 2px 2px grey;
     padding: 1em;
     margin: 1em;
-
+    
     @include for-mobile {	
 	max-width: 100%;
 	min-width: 0;
@@ -40,11 +40,17 @@ form {
 	margin: auto;
 	margin-bottom: 1em;
     }
+
+    textarea {
+	display: inline-block;
+	width: 100%;
+	border: 2px solid black;
+    }
     
-    input[type="text"], [type="password"], [type="email"] {
+    input[type="text"], [type="password"], [type="email"], textarea {
 	border: 2px solid black;
 	padding: 0.5em;
-
+	width: 100%;
 	&:hover {
 	    border: 2px solid $primary-color;
 	}
@@ -61,6 +67,7 @@ form {
 	    text-align: center;
 	    font-family: Tahoma;
 	    font-weight: bold;
+	    margin-top: 1em;
 	}
 
 	&__field {

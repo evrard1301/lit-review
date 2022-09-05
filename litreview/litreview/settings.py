@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sass_processor',
-    'authentication'
+    'authentication',
+    'publication'
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
+LOGIN_URL = '/login/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
