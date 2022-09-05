@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <div class="edit_ticket_page">
+    <h1>Modifier mon ticket</h1>
+    <form method="post" encType="multipart/form-data">
+      {% csrf_token %}
+      {% if error %}
+	<div class="error-panel">
+	  <div class="error-panel__body__error">
+	    <img class="error-panel__body__error__logo"
+		 alt=""
+		 src="{% static 'img/alert.png' %}"/>
+	    {{error}}
+	  </div>	  
+	</div>
+      {% endif %}
+      {% include 'form.html' with form=form %}
+      <input type="submit" value="Mettre à jour"/>
+    </form>
+  </div> 
+  
+{% endblock %}

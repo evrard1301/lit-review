@@ -9,3 +9,4 @@ class CreateTicketForm(forms.ModelForm):
         labels = {
             'title': 'Titre'
         }
+
