@@ -3,7 +3,7 @@
 {% block body %}
   <div class="login_page">
     <h1>Se connecter</h1>
-
+    
     <form method="post">
       {% csrf_token %}
       {% include 'form.html' with form=form %}

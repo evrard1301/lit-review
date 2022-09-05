@@ -17,11 +17,11 @@
   </div>
 {% endif %}
 
-<table>
+<table class="form">
   {% for field in form %}
-    <tr>
-      <td>{{field.label}}</td>
-      <td>{{field}}</td>
+    <tr class="form__group">
+      <td class="form__group__label">{{field.label}}</td>
+      <td class="form__group__field">{{field}}</td>
     </tr>
   {% endfor %}
   <table>

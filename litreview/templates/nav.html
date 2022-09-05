@@ -1,8 +1,17 @@
+{% load static %}
 <div class="nav">
+  
+  <a href="">
+    <img
+      class="nav__logo"
+      alt="LITReview"
+      src="{% static 'img/logo.png' %}"/>
+  </a>
+  
   <ul>
     {% if user.is_authenticated %}
       <li><a href="{% url 'logout' %}">déconnexion</a></li>
-    {% else %}}
+    {% else %}
       <li><a href="{% url 'login' %}">connexion</a></li>
     {% endif %}
   </ul>

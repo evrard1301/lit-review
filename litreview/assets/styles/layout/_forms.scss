@@ -5,15 +5,16 @@ errorlist {
 form {
     display: flex;
     flex-direction: column;    
-    max-width: 60%;
-    min-width: 50%;
+    width: 75%;
+    min-width: 400px;
     border: 1px solid black;
     box-shadow: 2px 2px 2px grey;
     padding: 1em;
     margin: 1em;
 
-    @include for-mobile {
+    @include for-mobile {	
 	max-width: 100%;
+	min-width: 0;
 	margin: 0;
     }
     
@@ -24,31 +25,48 @@ form {
 	width: 100%;
     }
     
-    label {
-	font-size: 1.2em;
-	font-weight: bold;
-    }
-    
     input {
 	margin: 1em 0 2em 0;
     }
-
+    
     input[type="submit"] {
+	font-weight: bold;
+	
+	background-color: $primary-color;
+	color: white;
+	
 	padding: 1em;
-	font-size: 1.2em;
-	background-color: rgb(220, 220, 255);
-	border: 2px solid $primary-color;
-	border-radius: 5px;
-
-	&:hover {
-	    background-color: rgb(200, 200, 255);
-	}
+	width: 75%;
+	margin: auto;
+	margin-bottom: 1em;
     }
     
     input[type="text"], [type="password"], [type="email"] {
-	border: 1px solid $primary-dark-color;
-	border-radius: 5px;
+	border: 2px solid black;
 	padding: 0.5em;
-	width: 75%;
+
+	&:hover {
+	    border: 2px solid $primary-color;
+	}
     }
 }
+
+.form {
+    &__group {
+	display: flex;
+	flex-direction: column;
+	
+	&__label {
+	    width: 100%;
+	    text-align: center;
+	    font-family: Tahoma;
+	    font-weight: bold;
+	}
+
+	&__field {
+	    width: 50%;
+	    margin: auto;
+	}
+    }    
+}
+
