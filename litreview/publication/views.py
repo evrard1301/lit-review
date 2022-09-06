@@ -86,3 +86,30 @@ class CreateTicketReview(LoginRequiredMixin, View):
             'author': author,
             'form': form
         })
+
+
+class EditReview(LoginRequiredMixin, View):
+    def get(self, request, id):
+        review = get_object_or_404(models.Review, id=id)
+        form = forms.ReviewForm(instance=review)
+        return render(request, 'publication/edit_review.html', {
+            'form': form
+        })
+
+    def post(self, request, id):
+        review = get_object_or_404(models.Review, id=id)
+        form = forms.ReviewForm(request.POST, instance=review)
+
+        if review.user.id != request.user.id:
+            return render(request, 'publication/edit_review.html', {
+                'form': form,
+                'error': 'impossible de modifier cette critique'
+            })
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+        return render(request, 'publication/edit_review.html', {
+            'form': form,
+        })

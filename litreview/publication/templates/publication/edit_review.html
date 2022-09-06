@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <div class="edit_review_page">
+    <h1>Modifier ma critique</h1>
+
+    <form method="post">
+      {% if error %}
+	<div class="error-panel">
+	  <div class="error-panel__body">
+	    <div class="error-panel__body__error">
+	      <img
+		class="error-panel__body__error__logo"
+		alt=""
+		src="{% static 'img/alert.png' %}"/>
+	      {{error}}
+	    </div>
+	  </div>
+
+	</div>
+      {% endif %}
+      {% csrf_token %}
+      {% include 'form.html' with form=form %}
+      <input type="submit" value="Modifier"/>
+    </form>
+  </div>
+  
+{% endblock %}

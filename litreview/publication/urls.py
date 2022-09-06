@@ -8,5 +8,8 @@ urlpatterns = [
          name='edit_ticket'),
     path('tickets/<int:id>/review',
          views.CreateTicketReview.as_view(),
-         name='ticket_review')
+         name='ticket_review'),
+    path('reviews/<int:id>/edit',
+         views.EditReview.as_view(),
+         name='edit_review')
 ]

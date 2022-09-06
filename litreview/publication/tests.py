@@ -101,3 +101,62 @@ class CreateTicketReviewTest(TestCase):
         self.assertEquals(4, review.rating)
         self.assertEquals(self.ticket.id, review.ticket.id)
         self.assertEquals(self.user.id, review.user.id)
+
+
+class EditReviewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='toto',
+                                             password='coucou')
+        self.client = Client()
+        self.client.login(username='toto',
+                          password='coucou')
+        self.ticket = models.Ticket.objects.create(title='ticket',
+                                                   description='my ticket',
+                                                   user=self.user)
+        self.review = models.Review.objects.create(rating=2,
+                                                   headline='review',
+                                                   body='my review',
+                                                   ticket=self.ticket,
+                                                   user=self.user)
+
+    def test_ok_edit_review(self):
+        self.assertEquals('review', models.Review.objects.first().headline)
+        self.assertEquals('my review', models.Review.objects.first().body)
+        self.assertEquals(2, models.Review.objects.first().rating)
+
+        self.client.post(reverse('edit_review',
+                                 kwargs={'id': self.review.id}), {
+                                     'headline': 'new review',
+                                     'body': 'my new review',
+                                     'rating': 3,
+                                     'user': self.user,
+                                     'ticket': self.ticket
+                                 })
+
+        self.assertEquals('new review', models.Review.objects.first().headline)
+        self.assertEquals('my new review', models.Review.objects.first().body)
+        self.assertEquals(3, models.Review.objects.first().rating)
+
+    def test_err_edit_review_not_owned(self):
+        User.objects.create_user(username='james',
+                                 password='azeqsdwxc')
+        self.client.logout()
+        self.client.login(username='james',
+                          password='azeqsdwxc')
+
+        self.assertEquals('review', models.Review.objects.first().headline)
+        self.assertEquals('my review', models.Review.objects.first().body)
+        self.assertEquals(2, models.Review.objects.first().rating)
+
+        self.client.post(reverse('edit_review',
+                                 kwargs={'id': self.review.id}), {
+                                     'headline': 'new review',
+                                     'body': 'my new review',
+                                     'rating': 3,
+                                     'user': self.user,
+                                     'ticket': self.ticket
+                                 })
+
+        self.assertEquals('review', models.Review.objects.first().headline)
+        self.assertEquals('my review', models.Review.objects.first().body)
+        self.assertEquals(2, models.Review.objects.first().rating)
