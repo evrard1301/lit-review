@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sass_processor',
     'authentication',
-    'publication'
+    'publication',
+    'home'
 ]
 
 MIDDLEWARE = [

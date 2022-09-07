@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="full_review_page">
+    <h1>Publier une critique</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      <h2>Ticket</h2>
+      {% include 'form.html' with form=ticket_form %}
+
+      <h2>Critique</h2>
+      {% include 'form.html' with form=review_form %}
+      <input type="submit" value="Publier"/>
+    </form>
+    
+  </div>
+{% endblock %}

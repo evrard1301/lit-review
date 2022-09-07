@@ -10,6 +10,7 @@
   
   <ul>
     {% if user.is_authenticated %}
+      <li><a href="{% url 'me' %}">publications</a></li>
       <li><a href="{% url 'tickets' %}">ticket</a></li>
       <li><a href="{% url 'logout' %}">déconnexion</a></li>
     {% else %}

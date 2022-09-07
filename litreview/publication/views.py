@@ -50,7 +50,7 @@ class EditTicketPage(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('me')
 
         return render(request, 'publication/edit_ticket.html', {
             'form': form
@@ -140,7 +140,7 @@ class EditReview(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('me')
 
         return render(request, 'publication/edit_review.html', {
             'form': form,

@@ -2,6 +2,9 @@
 @import 'base/typo';
 @import 'abstracts/for_mobile';
 @import 'themes/colors';
+
+@import 'components/btn';
+
 @import 'pages/signup';
 @import 'pages/login';
 @import 'pages/ticket';
@@ -9,6 +12,7 @@
 @import 'pages/ticket_review';
 @import 'pages/edit_review';
 @import 'pages/full_review';
+@import 'pages/me';
 @import 'layout/forms';
 @import 'layout/nav';
 @import 'components/errors_panel';

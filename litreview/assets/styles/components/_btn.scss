@@ -1,0 +1,21 @@
+.btn {
+    display: inline-block;
+    background-color: $primary-color;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 0.5em;
+    border-radius: 5px;
+
+    &--fixed {
+	position: fixed;
+	top: 85%;
+	left: 85%;
+
+	@include for-mobile {
+	    left: 50%;
+	}
+    }
+}
