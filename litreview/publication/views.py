@@ -88,6 +88,38 @@ class CreateTicketReview(LoginRequiredMixin, View):
         })
 
 
+class CreateFullReview(LoginRequiredMixin, View):
+    def get(self, request):
+        ticket_form = forms.CreateTicketForm()
+        review_form = forms.ReviewForm()
+
+        return render(request, 'publication/full_review.html', {
+            'ticket_form': ticket_form,
+            'review_form': review_form
+        })
+
+    def post(self, request):
+        ticket_form = forms.CreateTicketForm(request.POST,
+                                             request.FILES)
+        review_form = forms.ReviewForm(request.POST)
+
+        if all([ticket_form.is_valid(),
+                review_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            review = review_form.save(commit=False)
+            ticket.user = request.user
+            review.ticket = ticket
+            review.user = request.user
+            ticket.save()
+            review.save()
+            return redirect('login')
+
+        return render(request, 'publication/full_review.html', {
+            'ticket_form': ticket_form,
+            'review_form': review_form
+        })
+
+
 class EditReview(LoginRequiredMixin, View):
     def get(self, request, id):
         review = get_object_or_404(models.Review, id=id)

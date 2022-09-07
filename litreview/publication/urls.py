@@ -9,6 +9,9 @@ urlpatterns = [
     path('tickets/<int:id>/review',
          views.CreateTicketReview.as_view(),
          name='ticket_review'),
+    path('tickets/review',
+         views.CreateFullReview.as_view(),
+         name='full_review'),
     path('reviews/<int:id>/edit',
          views.EditReview.as_view(),
          name='edit_review')
