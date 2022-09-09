@@ -79,7 +79,7 @@ class CreateTicketReview(LoginRequiredMixin, View):
             review.ticket = ticket
             review.user = request.user
             review.save()
-            return redirect('login')
+            return redirect('me')
 
         return render(request, 'publication/ticket_review.html', {
             'ticket': ticket,
@@ -112,7 +112,7 @@ class CreateFullReview(LoginRequiredMixin, View):
             review.user = request.user
             ticket.save()
             review.save()
-            return redirect('login')
+            return redirect('me')
 
         return render(request, 'publication/full_review.html', {
             'ticket_form': ticket_form,
@@ -145,3 +145,19 @@ class EditReview(LoginRequiredMixin, View):
         return render(request, 'publication/edit_review.html', {
             'form': form,
         })
+
+
+class DeleteTicket(LoginRequiredMixin, View):
+    def get(self, request, id):
+        ticket = get_object_or_404(models.Ticket, id=id)
+        if request.user.id == ticket.user.id:
+            ticket.delete()
+        return redirect('me')
+
+
+class DeleteReview(LoginRequiredMixin, View):
+    def get(self, request, id):
+        review = get_object_or_404(models.Review, id=id)
+        if request.user.id == review.user.id:
+            review.delete()
+        return redirect('me')

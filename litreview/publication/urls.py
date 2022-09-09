@@ -6,6 +6,9 @@ urlpatterns = [
     path('tickets/<int:id>/edit',
          views.EditTicketPage.as_view(),
          name='edit_ticket'),
+    path('tickets/<int:id>/delete',
+         views.DeleteTicket.as_view(),
+         name='delete_ticket'),
     path('tickets/<int:id>/review',
          views.CreateTicketReview.as_view(),
          name='ticket_review'),
@@ -14,5 +17,8 @@ urlpatterns = [
          name='full_review'),
     path('reviews/<int:id>/edit',
          views.EditReview.as_view(),
-         name='edit_review')
+         name='edit_review'),
+    path('reviews/<int:id>/delete',
+         views.DeleteReview.as_view(),
+         name='delete_review')
 ]
