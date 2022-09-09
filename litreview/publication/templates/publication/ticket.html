@@ -1,13 +1,26 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block body %}
-  <div class="ticket_page">
-    <h1>Nouveau Ticket</h1>
+<div class="ticket">
 
-    <form method="post" encType="multipart/form-data">
-      {% csrf_token %}
-      {% include 'form.html' with form=form %}
-      <input type="submit" value="Créer un ticket"/>
-    </form>
-  </div>  
-{% endblock %}
+  {% if ticket.image %}
+    <img alt="" src="{% static ticket.image %}"/>
+  {% endif %}
+  
+  <div class="ticket__title">
+    {{ticket.title}}
+  </div>
+
+  <div class="ticket__info">
+    Le {{ticket.time_created.date}} à {{ticket.time_created.time}}
+  </div>
+
+  <div class="ticket__body">
+    {{ticket.description}}
+  </div>
+  
+  <div class="ticket__options">
+    <a class="btn btn--warning" href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
+    <a class="btn btn--alert" href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
+  </div>
+
+</div>

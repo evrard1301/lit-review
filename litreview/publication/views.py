@@ -12,7 +12,7 @@ from authentication.models import User
 
 class TicketPage(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'publication/ticket.html', {
+        return render(request, 'publication/create_ticket.html', {
             'form': forms.CreateTicketForm()
         })
 
@@ -25,7 +25,7 @@ class TicketPage(LoginRequiredMixin, View):
             ticket.save()
             return redirect('tickets')
 
-        return render(request, 'publication/ticket.html', {
+        return render(request, 'publication/create_ticket.html', {
             'form': form
         })
 

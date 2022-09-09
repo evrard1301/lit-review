@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="review">
+  
+  <div class="review__header">
+
+    <div class="review__header__stars">
+      {% for star in review.stars %}
+	{% if star %}
+	  <img alt="" src="{% static 'img/star.png' %}"/>
+	{% else %}
+	  <img alt="" src="{% static 'img/black_star.png' %}"/>
+	{% endif %}	    
+      {% endfor %}
+    </div>
+    
+    <div class="review__header__headline"> {{review.headline}} </div>
+  </div>
+  
+  <div class="review__info">
+    Le {{review.time_created.date}} à {{review.time_created.time}}
+  </div>	
+  
+  <div class="ticket">
+    {% if review.ticket.image %}
+      <img alt="" src="{% static review.ticket.image %}"/>
+    {% endif %}
+    
+    <div class="ticket__title">
+      {{review.ticket.title}}
+    </div>
+
+    <div class="ticket__info">
+      Par {{review.ticket.user.username}}
+      le {{review.ticket.time_created.date}}
+    </div>
+
+    <div class="ticket__body">
+      {{review.ticket.description}}
+    </div>
+
+  </div>
+  
+  <div class="review__body">
+    {{review.body}}
+  </div>
+
+  <div class="review__options">
+    <a class="btn btn--warning" href="{% url 'edit_review' review.id %}">Modifier</a>
+    <a class="btn btn--alert" href="{% url 'delete_review' review.id %}">Supprimer</a>
+  </div>
+
+</div>

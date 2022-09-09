@@ -17,3 +17,10 @@ class MePage(LoginRequiredMixin, View):
             'reviews': reviews,
             'tickets': tickets
         })
+
+
+class SocialPage(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'home/social.html', {
+        })
+
