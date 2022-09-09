@@ -1,163 +1,112 @@
 .me_page {
+    $bg_grey: transparentize(black, 0.95);
+    
     h1 {
 	margin: 1em;
 	text-align: center;
     }
 
     h2 {
-	margin: 1em;
+	border-bottom: 1px solid grey;
 	text-align: center;
-	border-bottom: 1px solid black;
     }
     
-    .container {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-
-	@include for-mobile {
-	    flex-direction: column;
-	    width: 100%;
-	}
-	
-	&__ticket_part {
-	    width: 50%;
-
-	    @include for-mobile {
-		width: 100%;
-	    }
-
-	}
-
-	&__review_part {
-	    width: 50%;
-	    
-	    @include for-mobile {
-		width: 100%;
-	    }
-
-	}
-    }
-
-    .reviews {
+    .content {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin: auto;
+	width: 50%;
 	
-	&__review {
-	    display: inline-block;
-	    margin: auto;
-	    width: 40%;
-	    min-width: 30%;
-	    padding: 1em;
-	    margin-bottom: 2em;
-	    background-color: $primary-light-color;
-	    border-radius: 15px;
-	    box-shadow: 2px 2px 2px grey;
-	    
-	    @include for-mobile {
-		width: 80%;
-	    }
+	.reviews {	    
+	    .review {
+		background-color: $bg-grey;
+		display: inline-block;
+		padding: 0.1em;
+		padding-left: 0.5em;
+		margin: 1em;
 
-	    &__date {
-		font-size: 0.8em;
-		color: grey;
-	    }
-	    
-	    &__title {
-		display: flex;
-		
-		@include for-mobile {
-		    flex-direction: column;
+		width: 100%;
+		height: 100%;
+
+		.ticket {
+		    border-left: 2px solid  $primary-color;;
+		    background-color:  $primary-light-color;
 		}
 		
-		&__name {
-		    display: inline-block;
-		    flex-grow: 1;
-		    color: $primary-color;
-		    font-weight: bold;
-		    font-size: 1.5em;
-		    text-align: center;
+		&__info {
+		    color: grey;
 		}
 		
-		&__rating {
-		    color: black;
+		&__header {
+		    display: flex;
+		    flex-direction: center;
+		    padding: 0.2em;
 		    font-weight: bold;
-		    font-size: 2em;
-		    margin-left: 0.5em;
 		    
-		    &__over_five {
-			font-weight: normal;
-			font-size: 0.5em;
+		    &__stars {
+			margin: 0.2em;
+			margin-right: 1em;
+			img {
+			    width: 12px;
+			}
+		    }
+		    
+		    &__headline {
+			text-decoration: underline;
+		    }
+		}	    
+		
+		&__body {
+		    padding: 1em;
+		}
+
+		&__options {
+		    display: none;
+		}
+
+		&:hover {
+		    .review__options {
+			display: flex;
 		    }
 		}
 	    }
-	    
-	    &__ticket {
-		&__body {
-		    background-color: lighten($primary-color, 60%);
-		}
-	    }
-
-	    &__content {
-		box-shadow: 2px 2px 2px grey;
-		
-		&__headline {
-		    margin-top: 1em;
-		    font-size: 1.5em;
-		    color: white;
-		    background-color: $primary-color;
-		    padding: 0.5em;
-		}
-		
-		&__body {		
-		    text-align: justify;
-		    margin-bottom: 1em;
-		    padding: 1em;
-		    background-color: lighten($primary-color, 60%);
-		}
-	    }
 	}
     }
-
-    .tickets {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+    
+    .ticket {
+	margin: 0.5em;
+	padding: 0.5em;
+	background-color: $bg-grey;
 	
-	&__ticket {
-	    background-color: $primary-light-color;
-	    padding: 2em;
-	    margin: auto;
-	    margin-bottom: 2em;
-	    border-radius: 15px;
-	    box-shadow: 2px 2px 2px grey;
+	img {
+	    float: left;
+	    margin: 1em;
+	    width: 32px;
+	    height: 32px;
+	}
+	
+	&__title {
+	    font-weight: bold;
+	    text-decoration: underline;
+	}
 
-	    &__date {
-		position: relative;
-		top: -1em;
-		font-size: 0.8em;
-		color: grey;
-	    }
+	&__info {
+	    color: grey;
+	    font-size: 0.85em;
+	}
+	
+	&__body {
+	    text-align: justify;
+	}
 
-	    &__content {
-		box-shadow: 2px 2px 2px grey;
+	&__options {
+	    display: none;
+	}
 
-		margin-bottom: 1em;
-		
-		&__title {
-		    background-color: $primary-color;
-		    color: white;
-		    font-size: 1.5em;
-		    text-align: center;
-		    padding: 0.5em;
-		}
-
-		&__body {
-		    padding: 1em;
-		    text-align: justify;
-		    background-color: lighten($primary-color, 60%);
-		}
+	&:hover {
+	    .ticket__options {
+		display: flex;
 	    }
 	}
     }

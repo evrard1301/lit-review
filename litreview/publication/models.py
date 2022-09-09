@@ -42,3 +42,11 @@ class Review(models.Model):
     headline = models.CharField(max_length=128)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def stars(self):
+        res = [True for i in range(self.rating)]
+
+        while len(res) < 5:
+            res.append(False)
+
+        return res

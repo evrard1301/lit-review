@@ -9,6 +9,16 @@
     margin: 0.5em;
     border-radius: 5px;
 
+    &--warning {
+	background-color: orange;
+	color: black;
+    }
+
+    &--alert {
+	background-color: red;
+	color: black;
+    }
+
     &--fixed {
 	position: fixed;
 	top: 85%;

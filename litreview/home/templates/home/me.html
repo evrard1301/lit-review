@@ -1,80 +1,98 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body %}
+  
   <div id="me_page" class="me_page">
     <h1>Mes publications</h1>
 
-    <a class="btn" href="#my_tickets">Tickets</a>
-    <a class="btn" href="#my_reviews">Critiques</a>
+    <div class="content">
+      <h2>Critiques</h2>
+      <div class="reviews">
+	{% for review in reviews %}
+	  <div class="review">
+	    
+	    <div class="review__header">
 
-    <a class="btn btn--fixed" href="#me_page">Revenir en haut</a>
-
-    <div class="container">
-      <div class="container__review_part">
-	<h2 id="my_reviews">Mes critiques</h2>
-	
-	<div class="reviews">
-	  {% for review in reviews %}
-	    <div class="reviews__review">
-	      
-	      <div class="reviews__review__date">
-		Le {{review.time_created.date}} à {{review.time_created.time}}
+	      <div class="review__header__stars">
+		{% for star in review.stars %}
+		  {% if star %}
+		    <img alt="" src="{% static 'img/star.png' %}"/>
+		  {% else %}
+		    <img alt="" src="{% static 'img/black_star.png' %}"/>
+		  {% endif %}	    
+		{% endfor %}
 	      </div>
 	      
-	      <div class="reviews__review__title">
-		<div class="reviews__review__title__name">
-		  {{review.ticket.title}}
-		</div>	    
-
-		<div class="reviews__review__title__rating">
-		  {{review.rating}}<span class="reviews__review__title__rating__over_five">/5</span>
-		</div>	    
-	      </div>
-
-	      <div class="reviews__review__ticket">
-		<em>
-		  En réponse à {{review.ticket.user.username}}
-		  ({{review.ticket.time_created.date}}),
-		</em>
-		
-		<div class="reviews__review__ticket__body">
-		  {{review.ticket.description}}
-		</div>
-
-	      </div>
-
-	      <div class="reviews__review__content">
-		<div class="reviews__review__content__headline">{{review.headline}}</div>
-		<div class="reviews__review__content__body">{{review.body}}</div>
-	      </div>
-	      
-	      <a class="btn" href="{% url 'edit_review' review.id%}">Modifier</a>
-	      <a class="btn" href="#">Supprimer</a>
+	      <div class="review__header__headline"> {{review.headline}} </div>
 	    </div>
-	  {% endfor %}
-	</div>
-      </div>
-      <div class="container__ticket_part">
-	<h2 id="my_tickets">Mes Tickets</h2>
-	<div class="tickets">
-	  {% for ticket in tickets %}
-	    <div class="tickets__ticket">
+	    
+	    <div class="review__info">
+	      Le {{review.time_created.date}} à {{review.time_created.time}}
+	    </div>	
+	    
+	    <div class="ticket">
+	      {% if review.ticket.image %}
+		<img alt="" src="{% static review.ticket.image %}"/>
+	      {% endif %}
+	      
+	      <div class="ticket__title">
+		{{review.ticket.title}}
+	      </div>
 
-	      <div class="tickets__ticket__date">
-		Le {{ticket.time_created.date}} à {{ticket.time_created.time}}
+	      <div class="ticket__info">
+		Par {{review.ticket.user.username}}
+		le {{review.ticket.time_created.date}}
 	      </div>
-	      
-	      <div class="tickets__ticket__content">
-		<div class="tickets__ticket__content__title">{{ticket.title}}</div>
-		<div class="tickets__ticket__content__body">{{ticket.description}}</div>
+
+	      <div class="ticket__body">
+		{{review.ticket.description}}
 	      </div>
-	      
-	      <a class="btn" href="{% url 'edit_ticket' ticket.id%}">Modifier</a>
-	      <a class="btn" href="#">Supprimer</a>	      
-	    </div>	      
-	  {% endfor %}
-	</div>	  
+
+	    </div>
+	    
+	    <div class="review__body">
+	      {{review.body}}
+	    </div>
+
+	    <div class="review__options">
+	      <a class="btn btn--warning" href="{% url 'edit_review' review.id %}">Modifier</a>
+	      <a class="btn btn--alert" href="#">Supprimer</a>
+	    </div>
+
+	  </div>
+	{% endfor %}
       </div>
-    </div>    
+
+      <h2>Tickets</h2>
+      <div class="tickets">
+	{% for ticket in tickets %}
+	  <div class="ticket">
+
+	    {% if ticket.image %}
+	      <img alt="" src="{% static ticket.image %}"/>
+	    {% endif %}
+	    	    
+	    <div class="ticket__title">
+	      {{ticket.title}}
+	    </div>
+
+	    <div class="ticket__info">
+	      Le {{ticket.time_created.date}} à {{ticket.time_created.time}}
+	    </div>
+
+	    <div class="ticket__body">
+	      {{ticket.description}}
+	    </div>
+	    
+	    <div class="ticket__options">
+	      <a class="btn btn--warning" href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
+	      <a class="btn btn--alert" href="#">Supprimer</a>
+	    </div>
+
+	  </div>
+	{% endfor %}
+      </div>
+    </div>
   </div>  
 {% endblock %}
