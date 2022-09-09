@@ -1,0 +1,52 @@
+.review {
+    background-color: $bg-grey;
+    display: inline-block;
+    padding: 0.1em;
+    padding-left: 0.5em;
+    margin: 1em 1em 1em 0;
+
+    width: 100%;
+    height: 100%;
+
+    .ticket {
+	border-left: 2px solid  $primary-color;;
+	background-color:  $primary-light-color;
+    }
+    
+    &__info {
+	color: grey;
+    }
+    
+    &__header {
+	display: flex;
+	flex-direction: center;
+	padding: 0.2em;
+	font-weight: bold;
+	
+	&__stars {
+	    margin: 0.2em;
+	    margin-right: 1em;
+	    img {
+		width: 12px;
+	    }
+	}
+	
+	&__headline {
+	    text-decoration: underline;
+	}
+    }	    
+    
+    &__body {
+	padding: 1em;
+    }
+
+    &__options {
+	display: none;
+    }
+
+    &:hover {
+	.review__options {
+	    display: flex;
+	}
+    }
+}

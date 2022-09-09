@@ -12,10 +12,29 @@ class MePage(LoginRequiredMixin, View):
         tickets = pub_models.Ticket.objects.filter(user=request.user)
         tickets = tickets.order_by('-time_created')
 
+        items = []
+
+        for review in reviews:
+            items.append({
+                'type': 'review',
+                'obj': review
+            })
+
+        for ticket in tickets:
+            items.append({
+                'type': 'ticket',
+                'obj': ticket
+            })
+
+            items = sorted(items,
+                           key=lambda x: x['obj'].time_created,
+                           reverse=True)
+
         return render(request, 'home/me.html', {
             'user': request.user,
             'reviews': reviews,
-            'tickets': tickets
+            'tickets': tickets,
+            'items': items
         })
 
 

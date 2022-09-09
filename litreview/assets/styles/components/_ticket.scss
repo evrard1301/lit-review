@@ -1,0 +1,36 @@
+.ticket {
+    margin: 0.5em 0.5em 0.5em 0;
+    padding: 0.5em;
+    background-color: $bg-grey;
+    
+    img {
+	float: left;
+	margin: 1em;
+	width: 32px;
+	height: 32px;
+    }
+    
+    &__title {
+	font-weight: bold;
+	text-decoration: underline;
+    }
+
+    &__info {
+	color: grey;
+	font-size: 0.85em;
+    }
+    
+    &__body {
+	text-align: justify;
+    }
+
+    &__options {
+	display: none;
+    }
+
+    &:hover {
+	.ticket__options {
+	    display: flex;
+	}
+    }
+}

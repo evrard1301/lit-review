@@ -6,20 +6,19 @@
   <div id="me_page" class="me_page">
     <h1>Mes publications</h1>
 
-    <div class="content">
-      <h2>Critiques</h2>
-      <div class="reviews">
-	{% for review in reviews %}
-	  {% include 'publication/review.html' with review=review %}
-	{% endfor %}
-      </div>
+    <div class="publications">      
+      {% for item in items %}
 
-      <h2>Tickets</h2>
-      <div class="tickets">
-	{% for ticket in tickets %}
-	  {% include 'publication/ticket.html' with ticket=ticket %}
-	{% endfor %}
-      </div>
+	<div class="publications__item">
+	  {% if item.type == 'review' %}
+	    {% include 'publication/review.html' with review=item.obj %}
+	  {% else %}
+	    {% include 'publication/ticket.html' with ticket=item.obj %}
+	  {% endif %}
+	</div>
+	
+      {% endfor %}
+      
     </div>
   </div>  
 {% endblock %}
