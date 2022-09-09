@@ -6,9 +6,21 @@
   <div id="me_page" class="me_page">
     <h1>Mes publications</h1>
 
+    <div class="pages">
+      {% for p in page_itr %}
+	{% if p == current_page %}
+	  <a class="pages__current"
+	     href="{% url 'me' %}?page={{p}}">{{p}}</a>
+	{% else %}
+	  <a
+	    <a class="pages__disabled"
+	    href="{% url 'me' %}?page={{p}}">{{p}}</a>
+	{% endif %}
+      {% endfor %}
+    </div>
+    
     <div class="publications">      
-      {% for item in items %}
-
+      {% for item in page %}
 	<div class="publications__item">
 	  {% if item.type == 'review' %}
 	    {% include 'publication/review.html' with review=item.obj %}

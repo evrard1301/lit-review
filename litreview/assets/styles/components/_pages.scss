@@ -1,0 +1,23 @@
+.pages {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    width: 50%;
+    margin: auto;
+
+    a {
+	color: black;
+	font-size: 1.2em;
+	text-align: center;
+    }
+    
+    &__disabled {
+	text-decoration: none;
+    }
+
+    &__current {
+	font-weight: bold;
+	text-decoration: underline;
+    }
+
+}

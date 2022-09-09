@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from publication import models as pub_models
 
 
@@ -30,11 +31,16 @@ class MePage(LoginRequiredMixin, View):
                            key=lambda x: x['obj'].time_created,
                            reverse=True)
 
+        paginator = Paginator(items, 5)
+        total_page = paginator.num_pages
+        current_page = int(request.GET.get('page', 1))
+
         return render(request, 'home/me.html', {
             'user': request.user,
-            'reviews': reviews,
-            'tickets': tickets,
-            'items': items
+            'items': items,
+            'page_itr': range(1, total_page + 1),
+            'page': paginator.get_page(current_page),
+            'current_page': current_page
         })
 
 
@@ -42,4 +48,3 @@ class SocialPage(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'home/social.html', {
         })
-
