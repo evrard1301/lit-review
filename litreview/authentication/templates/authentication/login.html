@@ -4,12 +4,13 @@
   <div class="login_page">
     <h1>Se connecter</h1>
     
-    <form method="post">
-      {% csrf_token %}
-      {% include 'form.html' with form=form %}
-      <input type="submit" value="Se Connecter" />
+    <form class="centered_form"
+	  method="post">
+	  {% csrf_token %}
+	  {% include 'form.html' with form=form %}
+	  <input type="submit" value="Se Connecter" />
+	  <a id="signup_link" href="{% url 'signup' %}">Toujours pas inscrit ?</a>	  
     </form>
-
-    <a id="signup_link" href="{% url 'signup' %}">Toujours pas inscrit ?</a>
+    
   </div>  
 {% endblock %}

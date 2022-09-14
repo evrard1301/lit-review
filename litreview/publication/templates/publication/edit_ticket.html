@@ -4,7 +4,9 @@
 {% block body %}
   <div class="edit_ticket_page">
     <h1>Modifier mon ticket</h1>
-    <form method="post" encType="multipart/form-data">
+    <form class="centered_form"
+	  method="post"
+	  encType="multipart/form-data">
       {% csrf_token %}
       {% if error %}
 	<div class="error-panel">

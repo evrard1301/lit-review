@@ -1,6 +1,54 @@
 .social_page {
+
     h1 {
 	margin: 1em;
 	text-align: center;
+    }
+    
+    .social {
+	display: block;
+	margin: auto;
+	margin-top: 2em;
+	width: 33%;
+	border: 1px solid red;
+		
+	&__header {
+	    display: flex;
+	    flex-direction: row;
+	    
+	    &__search {
+		padding: 1em;
+		input[type="text"] {
+		    width: 100%;
+		}
+		
+		input[type="submit"] {
+		    width: 100%;
+		}
+		
+		width: 50%;
+		border: 1px solid green;
+	    }
+
+	    &__filters {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+		padding: 1em;
+		border: 1px solid blue;
+	    }
+	}
+
+	&__body {
+	    ul {
+		list-style: none;
+
+		li {
+		    .social__body__name {
+			
+		    }
+		}
+	    }
+	}
     }
 }

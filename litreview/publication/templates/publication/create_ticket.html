@@ -4,7 +4,9 @@
   <div class="ticket_page">
     <h1>Nouveau Ticket</h1>
 
-    <form method="post" encType="multipart/form-data">
+    <form class="centered_form"
+	  method="post"
+	  encType="multipart/form-data">
       {% csrf_token %}
       {% include 'form.html' with form=form %}
       <input type="submit" value="Créer un ticket"/>

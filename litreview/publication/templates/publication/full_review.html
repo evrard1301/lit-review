@@ -4,7 +4,8 @@
   <div class="full_review_page">
     <h1>Publier une critique</h1>
 
-    <form method="post">
+    <form class="centered_form"
+	  method="post">
       {% csrf_token %}
       <h2>Ticket</h2>
       {% include 'form.html' with form=ticket_form %}

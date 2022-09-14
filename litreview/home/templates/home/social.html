@@ -2,7 +2,31 @@
 
 {% block body %}
   <div class="social_page">
-    <h1>Abonnements</h1>
+
+    <div class="social">
+      <form class="social__form" method="post">
+	{% csrf_token %}
+	<div class="social__header">
+	  <div class="social__header__search">
+	    <input type="text" placeholder="nom d'utilisateur"/>
+	    <input type="submit" value="rechercher"/>
+	  </div>
+	  <div class="social__header__filters">
+	    <div><input type="checkbox" checked/> <label>Abonnés</label></div>
+	    <div><input type="checkbox" checked/> <label>Abonnements</label></div>
+	    <div><input type="checkbox" checked/> <label>Autres</label></div>
+	  </div>
+	</div>
+      </form>
+      
+      <div class="social__body">
+	<ul>
+	  <li>
+	    TODO : ENTRIES HERE
+	  </li>	  
+	</ul>
+      </div>
+    </div>
 
     
   </div>  

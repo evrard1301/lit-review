@@ -5,7 +5,8 @@
   <div class="signup_page">    
     <h1>Nouveau compte</h1>
 
-    <form method="post">
+    <form class="centered_form"
+	  method="post">
       {% csrf_token %}
       {% include 'form.html' with form=form %}
       <input type="submit" value="S'inscrire" />
