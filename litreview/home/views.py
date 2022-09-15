@@ -93,7 +93,14 @@ class SocialPage(LoginRequiredMixin, View):
             'users': [
                 f for f in filtered_users
                 if f['user'].id != request.user.id
-            ]
+            ],
+            'n_followings': len(
+                models.UserFollows.objects.filter(user=request.user)
+            ),
+
+            'n_followers': len(
+                models.UserFollows.objects.filter(followed_user=request.user)
+            )
         })
 
     def post(self, request):

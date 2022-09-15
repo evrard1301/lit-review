@@ -2,7 +2,12 @@
 
 {% block body %}
   <div class="social_page">
-
+    <h2>
+      Vous avez <em>{{n_followings}}</em>
+      abonnement{% if n_followings > 1 %}s{% endif %} et <em>{{n_followers}}</em>
+      abonné{% if n_followers > 1 %}s{% endif %} !
+    </h2>
+    
     <div class="social">
       <form class="social__form">
 	{% csrf_token %}

@@ -2,9 +2,13 @@
     display: block;
     height: 100%;
     
-    h1 {
+    h1, h2 {
 	margin: 1em;
 	text-align: center;
+
+	em {
+	    color: green;
+	}
     }
     
     .social {
@@ -13,11 +17,12 @@
 	margin: auto;
 	margin-top: 2em;
 	width: 33%;
-	border: 1px solid red;
 		
 	&__header {
 	    display: flex;
 	    flex-direction: row;
+	    background-color: $primary-light-color;
+	    border-bottom: 2px solid $primary-color;
 	    
 	    &__search {
 		padding: 1em;
@@ -30,7 +35,6 @@
 		}
 		
 		width: 50%;
-		border: 1px solid green;
 	    }
 
 	    &__filters {
@@ -38,7 +42,6 @@
 		flex-direction: column;
 		width: 50%;
 		padding: 1em;
-		border: 1px solid blue;
 	    }
 	}
 
@@ -50,6 +53,8 @@
 		height: 100%;
 		
 		li {
+		    background-color: $primary-light-color;
+		    
 		    form {
 			$form-margin: 4em;
 			
