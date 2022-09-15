@@ -4,26 +4,40 @@
   <div class="social_page">
 
     <div class="social">
-      <form class="social__form" method="post">
+      <form class="social__form">
 	{% csrf_token %}
 	<div class="social__header">
 	  <div class="social__header__search">
-	    <input type="text" placeholder="nom d'utilisateur"/>
+	    <input type="text" name="username" placeholder="nom d'utilisateur"/>
 	    <input type="submit" value="rechercher"/>
 	  </div>
 	  <div class="social__header__filters">
-	    <div><input type="checkbox" checked/> <label>Abonnés</label></div>
-	    <div><input type="checkbox" checked/> <label>Abonnements</label></div>
-	    <div><input type="checkbox" checked/> <label>Autres</label></div>
+	    <div><input name="followers" type="checkbox"/> <label>Abonnés</label></div>
+	    <div><input name="following" type="checkbox"/> <label>Abonnements</label></div>
+	    <div><input name="others" type="checkbox" checked/> <label>Autres</label></div>
 	  </div>
 	</div>
       </form>
       
       <div class="social__body">
 	<ul>
-	  <li>
-	    TODO : ENTRIES HERE
-	  </li>	  
+	  {% for user_info in users %}
+	    <li>
+	      <form method="post">
+		{% csrf_token %}
+		<label>{{user_info.user.username}}</label>
+
+		{% if user_info.following %}		  
+		  <input type="hidden" name="user" value="{{user_info.user.id}}"/>
+		  <input class="btn" type="submit" value="ne plus suivre"/>		  
+		{% else %}
+		  <input type="hidden" name="user" value="{{user_info.user.id}}"/>
+		  <input class="btn" type="submit" value="suivre"/>
+		{% endif %}
+		
+	      </form>
+	    </li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>

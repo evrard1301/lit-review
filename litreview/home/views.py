@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from . import models
 from publication import models as pub_models
+from authentication import models as auth_models
 
 
 class MePage(LoginRequiredMixin, View):
@@ -46,5 +48,65 @@ class MePage(LoginRequiredMixin, View):
 
 class SocialPage(LoginRequiredMixin, View):
     def get(self, request):
+        search = request.GET.get('username', '')
+        users = auth_models.User.objects.all()
+        users = filter(lambda u: u.username[:len(search)] == search, users)
+
+        users = [{
+            'user': u,
+            'following': models.UserFollows.objects.filter(
+                user=request.user,
+                followed_user=u
+            ).all(),
+            'followers': models.UserFollows.objects.filter(
+                user=u,
+                followed_user=request.user
+            ).all()
+        } for u in users]
+
+        filtered_users = []
+
+        show_following = request.GET.get('following', '') != ''
+
+        if show_following:
+            filtered_users.extend(
+                filter(lambda u: len(u['following']) == 1, users)
+            )
+
+        show_followers = request.GET.get('followers', '') != ''
+
+        if show_followers:
+            filtered_users.extend(
+                filter(lambda u: len(u['followers']) == 1, users)
+            )
+
+        show_others = request.GET.get('others', '') != ''
+
+        if show_others or (
+                not show_followers and not show_following and not show_others
+        ):
+            filtered_users = users
+
+        filtered_users = sorted(filtered_users,
+                                key=lambda u: u['user'].username)
         return render(request, 'home/social.html', {
+            'users': [
+                f for f in filtered_users
+                if f['user'].id != request.user.id
+            ]
         })
+
+    def post(self, request):
+        followed = get_object_or_404(auth_models.User, id=request.POST['user'])
+
+        follows = models.UserFollows.objects.filter(user=request.user,
+                                                    followed_user=followed)
+
+        if len(follows.all()) == 0:
+            models.UserFollows.objects.create(user=request.user,
+                                              followed_user=followed)
+        else:
+            for f in follows.all():
+                f.delete()
+
+        return redirect('social')

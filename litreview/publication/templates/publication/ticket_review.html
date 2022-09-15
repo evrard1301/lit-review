@@ -25,7 +25,9 @@
 
       <div class="ticket_review__review">
 	<h2>Ma critique</h2>
-	<form method="post">
+	<form
+	  class="centered_form"
+	  method="post">
 	  {% csrf_token %}
 	  {% include 'form.html' with form=form %}
 	  <input type="submit" value="Publier"/>

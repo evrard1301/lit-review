@@ -1,5 +1,7 @@
 .social_page {
-
+    display: block;
+    height: 100%;
+    
     h1 {
 	margin: 1em;
 	text-align: center;
@@ -7,6 +9,7 @@
     
     .social {
 	display: block;
+	height: 100%;
 	margin: auto;
 	margin-top: 2em;
 	width: 33%;
@@ -40,12 +43,27 @@
 	}
 
 	&__body {
+	    height: 100%;
+	    
 	    ul {
 		list-style: none;
-
+		height: 100%;
+		
 		li {
-		    .social__body__name {
+		    form {
+			$form-margin: 4em;
 			
+			display: flex;
+			align-items: center;
+			
+			label {
+			    margin-left: $form-margin;
+			    flex-grow: 1;
+			}
+
+			input[type="submit"] {
+			    margin-right: $form-margin;
+			}			
 		    }
 		}
 	    }
