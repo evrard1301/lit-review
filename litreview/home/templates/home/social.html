@@ -12,9 +12,21 @@
 	    <input type="submit" value="rechercher"/>
 	  </div>
 	  <div class="social__header__filters">
-	    <div><input name="followers" type="checkbox"/> <label>Abonnés</label></div>
-	    <div><input name="following" type="checkbox"/> <label>Abonnements</label></div>
-	    <div><input name="others" type="checkbox" checked/> <label>Autres</label></div>
+	    <div>
+	      <input name="user_filter"
+		     value="all"
+		     type="radio" checked/> <label>Tous</label>
+	    </div>
+	    <div>
+	      <input name="user_filter"
+		     value="followers"
+		     type="radio"/> <label>Abonnés</label>
+	    </div>
+	    <div>
+	      <input name="user_filter"
+		     value="followings"
+		     type="radio"/> <label>Abonnements</label>
+	    </div>
 	  </div>
 	</div>
       </form>

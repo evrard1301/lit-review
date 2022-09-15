@@ -66,21 +66,21 @@ class SocialPage(LoginRequiredMixin, View):
 
         filtered_users = []
 
-        show_following = request.GET.get('following', '') != ''
+        show_following = request.GET.get('user_filter', '') == 'followings'
 
         if show_following:
             filtered_users.extend(
                 filter(lambda u: len(u['following']) == 1, users)
             )
 
-        show_followers = request.GET.get('followers', '') != ''
+        show_followers = request.GET.get('user_filter', '') == 'followers'
 
         if show_followers:
             filtered_users.extend(
                 filter(lambda u: len(u['followers']) == 1, users)
             )
 
-        show_others = request.GET.get('others', '') != ''
+        show_others = request.GET.get('user_filter', '') == 'all'
 
         if show_others or (
                 not show_followers and not show_following and not show_others
