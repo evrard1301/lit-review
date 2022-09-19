@@ -17,10 +17,12 @@
   <div class="ticket__body">
     {{ticket.description}}
   </div>
-  
-  <div class="ticket__options">
-    <a class="btn btn--warning" href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
-    <a class="btn btn--alert" href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
-  </div>
+
+  {% if ticket.user == request.user %}
+    <div class="ticket__options">
+      <a class="btn btn--warning" href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
+      <a class="btn btn--alert" href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
+    </div>
+  {% endif %}
 
 </div>

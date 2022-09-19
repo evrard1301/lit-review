@@ -117,3 +117,45 @@ class SocialPage(LoginRequiredMixin, View):
                 f.delete()
 
         return redirect('social')
+
+
+class NewsFeedPage(LoginRequiredMixin, View):
+    def get(self, request):
+        users = [
+            u.followed_user
+            for u in models.UserFollows.objects.filter(user=request.user)
+        ]
+
+        if request.user not in users:
+            users.append(request.user)
+
+        publications = []
+
+        for user in users:
+            tickets = pub_models.Ticket.objects.filter(user=user).all()
+
+            for ticket in tickets:
+                publications.append({
+                    'user': user,
+                    'type': 'ticket',
+                    'date': ticket.time_created,
+                    'data': ticket
+                })
+
+            reviews = pub_models.Review.objects.filter(user=user).all()
+
+            for review in reviews:
+                publications.append({
+                    'user': user,
+                    'type': 'review',
+                    'date': review.time_created,
+                    'data': review
+                })
+
+        publications = sorted(publications,
+                              key=lambda p: p['date'],
+                              reverse=True)
+
+        return render(request, 'home/news_feed.html', {
+            'publications': publications
+        })

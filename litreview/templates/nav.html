@@ -1,7 +1,7 @@
 {% load static %}
 <div class="nav">
   
-  <a href="">
+  <a href="{% url 'news_feed' %}">
     <img
       class="nav__logo"
       alt="LITReview"
@@ -11,9 +11,10 @@
   <ul>
     {% if user.is_authenticated %}
       <li><a href="{% url 'me' %}">publications</a></li>
-      <li><a href="{% url 'tickets' %}">ticket</a></li>
-      <li><a href="{% url 'logout' %}">déconnexion</a></li>
-    {% else %}
+    <li><a href="{% url 'social' %}">social</a></li>
+    <li><a href="{% url 'tickets' %}">ticket</a></li>
+    <li><a href="{% url 'logout' %}">déconnexion</a></li>
+  {% else %}
       <li><a href="{% url 'login' %}">connexion</a></li>
     {% endif %}
   </ul>

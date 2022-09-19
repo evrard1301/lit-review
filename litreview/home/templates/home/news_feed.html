@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="news_feed_page">
+    <div class="news_feed__header">
+      <a class="btn" href="{% url 'tickets' %}">Nouveau ticket</a>
+      <a class="btn" href="{% url 'full_review' %}">Nouvelle critique</a>
+    </div>
+
+    <div class="news_feed__publications">
+      {% for pub in publications %}
+	<div class="news_feed__publications__publication">
+	  <div class="news_feed__publications__publication__header">
+	    {% if pub.user == request.user %}
+	      publié par <strong>vous</strong>,
+	    {% else %}
+	      publié par <strong>{{pub.user.username}}</strong>,
+	    {% endif %}
+	    <em>le {{pub.date.date}} à {{pub.date.time}}</em>
+	  </div>
+
+	  {% if pub.type == 'ticket' %}
+	    {% include 'publication/ticket.html' with ticket=pub.data %}
+	    <a class="btn" href="{% url 'ticket_review' pub.data.id %}">
+	      Ajouter une critique
+	    </a>
+	  {% else %}
+	    {% include 'publication/review.html' with review=pub.data %}
+	  {% endif %}
+	</div>
+      {% endfor %}
+    </div>
+    
+  </div>
+{% endblock %}

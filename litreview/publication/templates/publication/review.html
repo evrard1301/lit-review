@@ -45,9 +45,11 @@
     {{review.body}}
   </div>
 
-  <div class="review__options">
-    <a class="btn btn--warning" href="{% url 'edit_review' review.id %}">Modifier</a>
-    <a class="btn btn--alert" href="{% url 'delete_review' review.id %}">Supprimer</a>
-  </div>
+  {% if review.user == request.user %}
+    <div class="review__options">
+      <a class="btn btn--warning" href="{% url 'edit_review' review.id %}">Modifier</a>
+      <a class="btn btn--alert" href="{% url 'delete_review' review.id %}">Supprimer</a>
+    </div>
+  {% endif %}
 
 </div>
