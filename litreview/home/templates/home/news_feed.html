@@ -7,6 +7,20 @@
       <a class="btn" href="{% url 'full_review' %}">Nouvelle critique</a>
     </div>
 
+    <div class="news_feed__pages">
+      {% for page in pages %}
+	<div class="news_feed__pages__page">
+	  {% if page == current_page %}
+	    <div class="news_feed__pages__page--current">
+	      <a href="{% url 'news_feed' %}?page={{page}}">{{page}}</a>
+	    </div>
+	  {% else %}
+	    <a href="{% url 'news_feed' %}?page={{page}}">{{page}}</a>
+	  {% endif %}
+	</div>
+      {% endfor %}
+    </div>
+    
     <div class="news_feed__publications">
       {% for pub in publications %}
 	<div class="news_feed__publications__publication">

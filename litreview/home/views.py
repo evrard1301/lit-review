@@ -156,6 +156,11 @@ class NewsFeedPage(LoginRequiredMixin, View):
                               key=lambda p: p['date'],
                               reverse=True)
 
+        current_page = int(request.GET.get('page', 1))
+        pages = Paginator(publications, 5)
+
         return render(request, 'home/news_feed.html', {
-            'publications': publications
+            'publications': pages.page(current_page),
+            'pages': pages.page_range,
+            'current_page': current_page
         })

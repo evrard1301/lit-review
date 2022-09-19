@@ -4,6 +4,31 @@
 	    text-align: center;
 	}
 
+	&__pages {
+	    display: flex;
+	    margin: 2em;
+	    
+	    justify-content: center;
+	    
+	    &__page {				
+		a {
+		    font-size: 1.2em;
+		    padding: 1em;
+		    color: black;
+		    text-decoration: none;
+		}
+
+		&--current {
+		    a {
+			font-weight: bold;
+			text-decoration: underline;
+		    }
+		}
+
+
+	    }
+	}
+	
 	&__publications {	    
 	    display: flex;
 	    flex-direction: column;
