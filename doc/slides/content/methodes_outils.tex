@@ -1,6 +1,16 @@
 \section{Méthodes et Outils}
 
-\begin{frame}{Architecture}
+\begin{frame}{Outils logiciels}
+  \begin{block}{Bibliothèques}
+    \begin{itemize}
+    \item Django (4.1)
+    \item Django SASS (1.2.1)
+    \item Pillow (9.2.0)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Architecture du projet}
   \begin{block}{Découpage en applications}
     {\color{darkred}\textit{authentication}}, 
     {\color{darkblue}\textit{publication}}, 
@@ -30,7 +40,7 @@
   \begin{block}{Utilisateur}
     \begin{lstlisting}
       class User(AbstractUser):
-      pass
+          pass
     \end{lstlisting}    
   \end{block}
 \end{frame}
