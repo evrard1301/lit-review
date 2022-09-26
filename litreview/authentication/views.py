@@ -18,4 +18,3 @@ class LoginPage(LoginView):
 
 class LogoutPage(LogoutView):
     next_page = reverse_lazy('login')
-

@@ -34,4 +34,10 @@ You can now access the web app from your browser at ``localhost:8000``.
 
 ## How to use LITReview
 
-_Work in progress_
+Four account already exists:
+
+* The administrator (username **admin**, password **admin**)
+* Three users:
+  - alice (username **alice**, password **azerty2323**)
+  - bob (username **bob**, password **azerty2323**)
+  - claire (username **claire**, password **azerty2323**)

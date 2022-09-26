@@ -32,7 +32,8 @@ class TicketPage(LoginRequiredMixin, View):
 
 class EditTicketPage(LoginRequiredMixin, View):
     def get(self, request, id):
-        form = forms.CreateTicketForm(instance=models.Ticket.objects.get(id=id))
+        form = \
+            forms.CreateTicketForm(instance=models.Ticket.objects.get(id=id))
         return render(request, 'publication/edit_ticket.html', {
             'form': form
         })
